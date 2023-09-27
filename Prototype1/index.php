@@ -1,13 +1,14 @@
 <?php
 
+
 include "GestionStagiaire.php";
+
 
 // Trouver tous les employés depuis la base de données
 $gestionStagiaire = new GestionStagiaire();
 $stagiaires = $gestionStagiaire->AfficherTous();
 
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>

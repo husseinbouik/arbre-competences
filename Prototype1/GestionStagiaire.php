@@ -9,7 +9,7 @@ class GestionStagiaire
 
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=stagiaire', 'root', '');
+        $this->pdo = new PDO('mysql:host=localhost;dbname=arbre_competence', 'root', '');
     }
 
     public function AfficherTous()
