@@ -1,54 +1,35 @@
 <?php
 
-// include "../Entities/Stagiaire.php";
 include __DIR__ . '/Stagiaire.php';
 
+class GestionStagiaire
+{
 
+    private $pdo;
 
-
- 
-class GestionStagiaire{
-
-    private $Connection = Null;
-
-    private function getConnection(){
-        if(is_null($this->Connection)){
-            $this->Connection = mysqli_connect('localhost', 'root', '', 'stagiaire');
-            // Vérifier l'ouverture de la connexion avec la base de données
-
-            if(!$this->Connection){
-                $message =  'Erreur de connexion: ' . mysqli_connect_error(); 
-                throw new Exception($message); 
-            }
-        }
-        
-        return $this->Connection;
-        
+    public function __construct()
+    {
+        $this->pdo = new PDO('mysql:host=localhost;dbname=stagiaire', 'root', '');
     }
 
-
-    
-    public function RechercherTous(){
+    public function AfficherTous()
+    {
         $sql = 'SELECT id, nom, cne FROM personne';
-        $query = mysqli_query($this->getConnection() ,$sql);
-        $stagiaires_data = mysqli_fetch_all($query, MYSQLI_ASSOC);
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
 
-        $stagiaires = array();
-        foreach ($stagiaires_data as $stagiaire_data) {
+        $stagiaires = [];
+        foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $stagiaire_data) {
             $stagiaire = new Stagiaire();
             $stagiaire->setId($stagiaire_data['id']);
             $stagiaire->setNom($stagiaire_data['nom']);
             $stagiaire->setCne($stagiaire_data['cne']);
-            array_push($stagiaires, $stagiaire);
+
+            $stagiaires[] = $stagiaire;
         }
+
         return $stagiaires;
     }
-
-
-    
 }
-
-
-
 
 ?>
