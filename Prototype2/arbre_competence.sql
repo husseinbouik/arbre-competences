@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 27 sep. 2023 à 11:13
+-- Généré le : mer. 27 sep. 2023 à 16:48
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -28,26 +28,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `personne` (
-  `Id` int(11) NOT NULL,
-  `Nom` varchar(255) NOT NULL,
-  `CNE` varchar(100) DEFAULT NULL
+  `id` int(11) NOT NULL,
+  `nom` varchar(255) NOT NULL,
+  `cne` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `personne`
 --
 
-INSERT INTO `personne` (`Id`, `Nom`, `CNE`) VALUES
-(1, 'nickie minaj', 'P134500206'),
+INSERT INTO `personne` (`id`, `nom`, `cne`) VALUES
+(1, 'nickie minaj', 'P134500205'),
 (4, 'hussein bouik', 'k1462512'),
 (5, 'ariana grande', 'P134500102'),
 (8, 'olivia rodrigo', 'K123456789'),
-(10, 'kim kardishian', 'Q134500206'),
 (12, 'selena gomez', 'X123456789'),
 (14, 'doja cat', 'H123456789'),
 (20, 'salma bourkabi', 'P987654321'),
 (21, 'ice spice', 'P456123789'),
-(22, 'yasmina semina', 'B123456789');
+(22, 'yasmina seminaa', 'B123456789');
 
 -- --------------------------------------------------------
 
@@ -70,7 +69,6 @@ INSERT INTO `ville` (`id`, `Ville`, `personneId`) VALUES
 (2, 'Tanger', 4),
 (3, 'Tanger', 5),
 (4, 'Agadir', 8),
-(6, 'Casablanca', 10),
 (7, 'Rosario', 14),
 (8, 'Funchal', 12),
 (9, 'Tetouan', 20),
@@ -85,8 +83,8 @@ INSERT INTO `ville` (`id`, `Ville`, `personneId`) VALUES
 -- Index pour la table `personne`
 --
 ALTER TABLE `personne`
-  ADD PRIMARY KEY (`Id`),
-  ADD UNIQUE KEY `UQ_CNE_Stagiaire` (`CNE`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `UQ_CNE_Stagiaire` (`cne`);
 
 --
 -- Index pour la table `ville`
@@ -103,7 +101,7 @@ ALTER TABLE `ville`
 -- AUTO_INCREMENT pour la table `personne`
 --
 ALTER TABLE `personne`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `ville`
