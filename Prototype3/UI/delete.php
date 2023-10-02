@@ -9,11 +9,11 @@ if (file_exists('./Entities/Stagiaire.php')) {
   // Neither file exists, so handle the error here
   echo "Error: Stagiaire.php not found in either directory.";
 }
-if (isset($_GET['id'])) {
+if (isset($_GET['Id'])) {
  // Trouver tous les employés depuis la base de données 
 $gestionStagiaire = new GestionStagiaire();
-$id = $_GET['id'] ;
-$gestionStagiaire-> SupprimerStagiaire($id) ;
+$Id = $_GET['Id'] ;
+$gestionStagiaire-> SupprimerStagiaire($Id) ;
 header('Location: ../index.php')    ;
 }
 

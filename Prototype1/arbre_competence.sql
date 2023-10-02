@@ -56,7 +56,7 @@ INSERT INTO `personne` (`Id`, `Nom`, `CNE`) VALUES
 --
 
 CREATE TABLE `ville` (
-  `id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL,
   `Ville` varchar(255) NOT NULL,
   `personneId` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -65,7 +65,7 @@ CREATE TABLE `ville` (
 -- Déchargement des données de la table `ville`
 --
 
-INSERT INTO `ville` (`id`, `Ville`, `personneId`) VALUES
+INSERT INTO `ville` (`Id`, `Ville`, `personneId`) VALUES
 (1, 'Tanger', 1),
 (2, 'Tanger', 4),
 (3, 'Tanger', 5),
@@ -92,7 +92,7 @@ ALTER TABLE `personne`
 -- Index pour la table `ville`
 --
 ALTER TABLE `ville`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`Id`),
   ADD KEY `ville_ibfk_1` (`personneId`);
 
 --
@@ -109,7 +109,7 @@ ALTER TABLE `personne`
 -- AUTO_INCREMENT pour la table `ville`
 --
 ALTER TABLE `ville`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Contraintes pour les tables déchargées

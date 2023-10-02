@@ -11,24 +11,24 @@ if (file_exists('./Entities/Stagiaire.php')) {
 }
 
 // Get the ID of the stagiaire to edit
-$id = $_GET['id'];
+$Id = $_GET['Id'];
 
 // Create a new GestionStagiaire object
 $gestionStagiaire = new GestionStagiaire();
 
 // Get the stagiaire's data from the database
-$stagiairee = $gestionStagiaire->GetStagiaireById($id);
+$stagiairee = $gestionStagiaire->GetStagiaireById($Id);
 
 // If the POST form is submitted, update the stagiaire in the database
 if (!empty($_POST)) {
   // Get the values of the ID, name, and CNE fields
-  $id = $_POST['id'];
-  $nom = $_POST['nom'];
-  $cne = $_POST['cne'];
+  $Id = $_POST['Id'];
+  $Nom = $_POST['Nom'];
+  $CNE = $_POST['CNE'];
 
   $gestionStagiaire = new GestionStagiaire();
   // Update the stagiaire in the database
-  $gestionStagiaire->ModifierStagiaire($id, $nom, $cne);
+  $gestionStagiaire->ModifierStagiaire($Id, $Nom, $CNE);
   // Redirect the user to the index page
   header("Location: ../index.php");
 }
@@ -38,7 +38,7 @@ if (!empty($_POST)) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="wIdth=device-wIdth, initial-scale=1.0">
   <title>Edit/Add Stagiaire</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
@@ -47,15 +47,15 @@ if (!empty($_POST)) {
     <h1>Edit/Add Stagiaire</h1>
 
     <!-- Edit Form -->
-    <form id="edit-form" action="" method="post">
-      <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+    <form Id="edit-form" action="" method="post">
+      <input type="hIdden" name="Id" Id="Id" value="<?php echo $Id; ?>">
       <div class="mb-3">
-        <label for="nom" class="form-label">Nom</label>
-        <input type="text" class="form-control" id="nom" value="<?php echo $stagiairee->getNom(); ?>" name="nom" required>
+        <label for="Nom" class="form-label">Nom</label>
+        <input type="text" class="form-control" Id="Nom" value="<?php echo $stagiairee->getNom(); ?>" name="Nom" required>
       </div>
       <div class="mb-3">
-        <label for="cne" class="form-label">CNE</label>
-        <input type="text" class="form-control" id="cne" value="<?php echo $stagiairee->getCne(); ?>" name="cne" required>
+        <label for="CNE" class="form-label">CNE</label>
+        <input type="text" class="form-control" Id="CNE" value="<?php echo $stagiairee->getCne(); ?>" name="CNE" required>
       </div>
       <div class="mb-3 d-flex gap-3">
         <button type="submit" class="btn btn-primary">Submit</button>

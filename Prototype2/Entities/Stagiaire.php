@@ -2,33 +2,33 @@
 
 class Stagiaire{
 
-    private $id;
-    private $nom;
-    private $cne;
+    private $Id;
+    private $Nom;
+    private $CNE;
    
 
 
 
 
     public function getId() {
-        return $this->id;
+        return $this->Id;
     }
     public function setId($ID) {
-        $this->id = $ID;
+        $this->Id = $ID;
     }
 
     public function getNom() {
-        return $this->nom;
+        return $this->Nom;
     }
     public function setNom($NOM) {
-        $this->nom = $NOM;
+        $this->Nom = $NOM;
     }
 
     public function getCne() {
-        return $this->cne;
+        return $this->CNE;
     }
     public function setCne($CNE) {
-        $this->cne = $CNE;
+        $this->CNE = $CNE;
     }
 }
      

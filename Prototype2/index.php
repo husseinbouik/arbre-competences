@@ -13,7 +13,7 @@ $stagiaires = $gestionStagiaire->AfficherTous();
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="wIdth=device-wIdth, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <title>Gestion des stagiaires</title>
 </head>
@@ -34,8 +34,8 @@ $stagiaires = $gestionStagiaire->AfficherTous();
             <td><?= $stagiaire->getNom() ?></td>
             <td><?= $stagiaire->getCne() ?></td>
             <td>
-              <a href="./UI/delete.php?id=<?php echo $stagiaire->getId(); ?>" class="btn btn-danger">Supprimer</a>
-              <a href="./UI/edit_stagiaire.php?id=<?php echo $stagiaire->getId(); ?>" class="btn btn-primary">Modifier</a>
+              <a href="./UI/delete.php?Id=<?php echo $stagiaire->getId(); ?>" class="btn btn-danger">Supprimer</a>
+              <a href="./UI/edit_stagiaire.php?Id=<?php echo $stagiaire->getId(); ?>" class="btn btn-primary">Modifier</a>
             </td>
           </tr>
         <?php } ?>

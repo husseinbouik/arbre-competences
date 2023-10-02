@@ -2,34 +2,52 @@
 
 class Stagiaire{
 
-    private $id;
-    private $nom;
-    private $cne;
+    private $Id;
+    private $Nom;
+    private $CNE;
+    private $Ville_Id;
+    private $Ville_Nom;
+
    
 
 
 
 
     public function getId() {
-        return $this->id;
+        return $this->Id;
     }
     public function setId($ID) {
-        $this->id = $ID;
+        $this->Id = $ID;
     }
 
     public function getNom() {
-        return $this->nom;
+        return $this->Nom;
     }
     public function setNom($NOM) {
-        $this->nom = $NOM;
+        $this->Nom = $NOM;
     }
 
     public function getCne() {
-        return $this->cne;
+        return $this->CNE;
     }
     public function setCne($CNE) {
-        $this->cne = $CNE;
+        $this->CNE = $CNE;
     }
+ 
+    public function getVilleId() {
+        return $this->Id;
+    }
+    public function setVilleId($Ville_Id) {
+        $this->Id = $Ville_Id;
+    }
+    public function getVille() {
+        return $this->Ville_Nom;
+    }
+    public function setVille($Ville_Nom) {
+        $this->Ville_Nom = $Ville_Nom;
+    }
+ 
+ 
 }
      
 ?>

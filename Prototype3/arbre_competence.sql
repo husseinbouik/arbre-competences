@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 27 sep. 2023 à 17:50
+-- Généré le : lun. 02 oct. 2023 à 17:17
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -39,7 +39,7 @@ CREATE TABLE `personne` (
 --
 
 INSERT INTO `personne` (`Id`, `Nom`, `CNE`, `Ville_Id`) VALUES
-(1, 'nickie minaj', 'G627353', 1),
+(1, 'nickie minaj', 'G6273536', 1),
 (2, 'hussein bouik', 'G6734', 1),
 (3, 'ariana grande', 'G23823', 1),
 (4, 'selena gomez', 'G23823', 1),
@@ -53,16 +53,19 @@ INSERT INTO `personne` (`Id`, `Nom`, `CNE`, `Ville_Id`) VALUES
 (12, 'nickie minaj', 'G54356', 6),
 (13, 'ariana grande', 'GA76Z76', 6),
 (14, 'nickie minaj', 'G765376', 5),
-(15, 'yasmina seminaa', '', 11),
-(16, 'olivia rodrigo', '', 11),
-(17, 'yasmina seminaa', '', 11),
-(18, 'hussein bouik', '', 11),
-(19, 'doja cat', '', 1),
-(22, 'ice spice', '', 19),
-(23, 'doja cati', '', 12),
+(15, 'yasmina seminaa', 'G6273534', 11),
+(16, 'olivia rodrigo', 'G6273534', 11),
+(17, 'yasmina seminaa', 'G6273530', 11),
+(18, 'hussein bouik', 'A1122333', 11),
+(19, 'doja cat', 'F333777', 1),
+(22, 'ice spice', 'I15569', 19),
+(23, 'doja cati', 'F333777', 12),
 (24, 'ice spice', 'P634774', 13),
 (25, 'olivia rodrigo', 'P634755', 5),
-(26, 'doja cat', 'P634755', 12);
+(26, 'doja cat', 'P634755', 12),
+(0, 'Tempora corporis con', 'Eu aliquam ', 17),
+(0, 'hassan', 'F333777', 13),
+(0, 'HUSSEIN', 'F333777', 2);
 
 -- --------------------------------------------------------
 

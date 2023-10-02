@@ -21,16 +21,16 @@ class GestionStagiaire
 
     public function AfficherTous()
     {
-        $sql = 'SELECT id, nom, cne FROM personne';
+        $sql = 'SELECT Id, Nom, CNE FROM personne';
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
 
         $stagiaires = [];
         foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $stagiaire_data) {
             $stagiaire = new Stagiaire();
-            $stagiaire->setId($stagiaire_data['id']);
-            $stagiaire->setNom($stagiaire_data['nom']);
-            $stagiaire->setCne($stagiaire_data['cne']);
+            $stagiaire->setId($stagiaire_data['Id']);
+            $stagiaire->setNom($stagiaire_data['Nom']);
+            $stagiaire->setCne($stagiaire_data['CNE']);
 
             $stagiaires[] = $stagiaire;
         }
@@ -38,38 +38,38 @@ class GestionStagiaire
         return $stagiaires;
     }
 
-    public function SupprimerStagiaire($id)
+    public function SupprimerStagiaire($Id)
     {
-        $sql = 'DELETE FROM personne WHERE id = :id';
+        $sql = 'DELETE FROM personne WHERE Id = :Id';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':id', $id);
+        $stmt->bindValue(':Id', $Id);
         $stmt->execute();
     }
 
-    public function ModifierStagiaire($id, $nom, $cne)
+    public function ModifierStagiaire($Id, $Nom, $CNE)
     {
-        $sql = 'UPDATE personne SET nom = :nom, cne = :cne WHERE id = :id';
+        $sql = 'UPDATE personne SET Nom = :Nom, CNE = :CNE WHERE Id = :Id';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':id', $id);
-        $stmt->bindValue(':nom', $nom);
-        $stmt->bindValue(':cne', $cne);
+        $stmt->bindValue(':Id', $Id);
+        $stmt->bindValue(':Nom', $Nom);
+        $stmt->bindValue(':CNE', $CNE);
         $stmt->execute();
     }
-    public function AjouterStagiaire($nom, $cne)
+    public function AjouterStagiaire($Nom, $CNE)
     {
-        $sql = 'INSERT INTO personne (nom, cne) VALUES (:nom, :cne)';
+        $sql = 'INSERT INTO personne (Nom, CNE) VALUES (:Nom, :CNE)';
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':nom', $nom);
-        $stmt->bindValue(':cne', $cne);
+        $stmt->bindValue(':Nom', $Nom);
+        $stmt->bindValue(':CNE', $CNE);
         $stmt->execute();
 
         return $this->pdo->lastInsertId();
     }
-    public function GetStagiaireById($id)
+    public function GetStagiaireById($Id)
     {
-      $sql = "SELECT * FROM personne WHERE id = :id";
+      $sql = "SELECT * FROM personne WHERE Id = :Id";
       $stmt = $this->pdo->prepare($sql);
-      $stmt->bindValue(':id', $id);
+      $stmt->bindValue(':Id', $Id);
       $stmt->execute();
     
       $stagiaire = null;
@@ -77,9 +77,9 @@ class GestionStagiaire
         $stagiaire_data = $stmt->fetch(PDO::FETCH_ASSOC);
     
         $stagiaire = new Stagiaire();
-        $stagiaire->setId($stagiaire_data['id']);
-        $stagiaire->setNom($stagiaire_data['nom']);
-        $stagiaire->setCne($stagiaire_data['cne']);
+        $stagiaire->setId($stagiaire_data['Id']);
+        $stagiaire->setNom($stagiaire_data['Nom']);
+        $stagiaire->setCne($stagiaire_data['CNE']);
       }
     
       return $stagiaire;
