@@ -60,6 +60,11 @@ return $dataArr;
  public function DeleteStudent($studentId){
     $sql = "DELETE FROM Sdutent WHERE Id=" . $studentId;
     $stmt = $this->db->prepare($sql);
-    $tmt = 
+    $tmt->excute();
+    return $stmt->rowCount();
  }
+public function IsEmailExists($email,$id = 0){
+    $sql = "SELECT * FROM Student WHERE Email='" . $email . "'AND Id != $id";
+    
+}
 }
