@@ -63,8 +63,27 @@ return $dataArr;
     $tmt->excute();
     return $stmt->rowCount();
  }
+
+ public function IsIdExists($id){
+    $sql ="SELECT * FROM Student WHERE Id = $id";
+    $raw_result = $this->db->prepare($sql);
+    $raw_result->execute();
+    if (!$raw_result->rowCount() > 0 ) {
+        return false;
+
+    }else {
+        return true;
+    }
+ }
 public function IsEmailExists($email,$id = 0){
     $sql = "SELECT * FROM Student WHERE Email='" . $email . "'AND Id != $id";
-    
+    $raw_result = $this->db->prepare($sql);
+    $raw_result->execute();
+    $isEmail = $raw_result->fetch();
+    if ($isEmail > 0) {
+        return true;
+    }else {
+        return false;
+    }
 }
 }
