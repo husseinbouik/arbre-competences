@@ -35,6 +35,29 @@ public function UpdateStudent($student){
     return $affectedRows;
 }
 public function DeleteStudent($studentId){
-    $affectedRows
+    $affectedRows = 0;
+    if ($studentId > 0) {
+        if ($this->IsIdExists($studentId)) {
+            $affectedRows = (int)$this->studentDao->DeleteStudent($studentId);
+        }else {
+            $this->errorMessage = 'Record not found.';
+    
+        }
+    }else {
+        $this->errorMessage = 'Invalid Id.';
+    }
+    return $affectedRows;
 }
+public function IsValidStudent($student){
+    if ($this->IsEmailExists($student->GetEmail(),$student->GetId())) {
+        $this->errorMessage = 'Email' . $student->GetEmail() .'already exists. Try a different one.';
+        return false;
+    } else {
+return true;
+    }    
+}
+public function IsIdExists($id){
+    return $this->studentDao->IsIdExists($id);
+}
+
 }
