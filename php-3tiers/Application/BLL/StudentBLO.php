@@ -60,4 +60,7 @@ public function IsIdExists($id){
     return $this->studentDao->IsIdExists($id);
 }
 
+public function IsEmailExists($email, $id){
+    return $this->studentDao->IsEmailExists($email,$id);
+}
 }

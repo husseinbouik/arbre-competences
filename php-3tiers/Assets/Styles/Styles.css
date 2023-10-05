@@ -4,11 +4,8 @@ body {
 
 .center { text-align: center; }
 
-
-/* Attaching Search button with text bo
--------------------------------------------------- */
 .navbar-input-group {
-    font-size: 0px; /*removes whitespace between button and input*/
+    font-size: 0px;
 }
 .navbar-input-group .form-control {
     border-top-right-radius: 0px;
@@ -20,14 +17,12 @@ body {
     border-right: 0px;
 }
 
-/* Sticky footer styles
--------------------------------------------------- */
 html {
     position: relative;
     min-height: 100%;
 }
 body {
-    /* Margin bottom by footer height */
+   
     margin-bottom: 60px;
 }
 .footer {
