@@ -20,7 +20,7 @@ public function GetAllStudents()
     }
 $allTraineesData = $raw_result->fetchAll(PDO::FETCH_ASSOC);
 $dataArr = [];
-foreach ($allTraineeData as $data) {
+foreach ($allTraineesData as $data) {
     $traineeInfo = new Student($data['Id'],$data['Name'],$data['Email'],$data['DateOfBirth']);
     array_push($dataArr,$traineeInfo);
 }
@@ -37,7 +37,7 @@ return $dataArr;
     $stmt ->bindParam(':studentId',$studentId,PDO::PARAM_INT);
     $stmt->execute();
     $aStudent = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($astudent !== false) {
+    if ($aStudent !== false) {
         $studentObj = new Student($aStudent['Id'],$aStudent['Name'],$aStudent['Email'],$aStudent['DateOfBirth']);
         return $studentObj;
     }
@@ -57,10 +57,24 @@ return $dataArr;
     $lastInsertId = $this->db->lastInsertId();
     return $lastInsertId ;
  }
+ public function UpdateStudent($student)
+ {
+
+     $sql = "UPDATE Student
+             SET
+                 Name='" . $student->GetName() . "',
+                 Email='" . $student->GetEmail() . "',
+                 DateOfBirth='" . $student->GetDateOfBirth() . "'
+             WHERE Id=" . $student->GetId();
+
+     $stm = $this->db->prepare($sql);
+     $stm->execute();
+     return $stm->rowCount();
+ }
  public function DeleteStudent($studentId){
     $sql = "DELETE FROM Sdutent WHERE Id=" . $studentId;
     $stmt = $this->db->prepare($sql);
-    $tmt->excute();
+    $stmt->execute();
     return $stmt->rowCount();
  }
 

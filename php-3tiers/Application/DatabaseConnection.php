@@ -8,7 +8,7 @@ class DatabaseConnection {
         try{
             $dsn ="mysql:host=" . $this->host . ";dbname=" . $this->dbname;
             $db = new PDO($dsn,$this->user , $this->password);
-            $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC).
+            $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             return $db;
         }catch(PDOException $e){
             echo'connection failed' . $e->getMessage();

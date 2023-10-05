@@ -4,8 +4,8 @@ $errorMessage = '';
 if(isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Add Student'){
     $studentBllObj = new StudentBLO();
     $studentName = $_POST['studentName'];
-    $studentRoll = $_POST['studentRoll'];
-    $studentEmail = $_POST['steudentEmail'];
+    // $studentRoll = $_POST['studentRoll'];
+    $studentEmail = $_POST['studentEmail'];
 $studentDateOfBirth = $_POST['studentDateOfBirth'];
 $newStudent =new Student(0,$studentName,$studentEmail,$studentDateOfBirth);
 $addStudentResult = $studentBllObj->AddStudent($newStudent);
@@ -21,7 +21,7 @@ if($addStudentResult > 0){
 }
 }
 $pageTitle = 'Add New Student';
-include_once("Template/header.php");
+include_once("Templates/header.php");
 ?>
 <?php if($errorMessage != ''):?>
     <div class="alert alert-danger"><?php echo $errorMessage;?></div>
@@ -43,6 +43,11 @@ include_once("Template/header.php");
     <input type="text" name="studentDateOfBirth" id="studentDateOfBirth" class="form-control" placeholder="Date Of Birth"/>
 </div>
 </div>
+<div class="form-group">
+            <div class="col-sm-offset-2 col-sm-4">
+                <input type="submit" name="studentSubmitButton" id="studentSubmitButton" value="Add Student" class="btn  btn-primary" />
+            </div>
+        </div>
 </form>
 <?php include_once("Templates/footer.php");?>
 

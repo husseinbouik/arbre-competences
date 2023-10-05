@@ -12,7 +12,7 @@ public function GetStudent($studentId){
     return $this->studentDao->GetStudent($studentId);
 }
 public function AddStudent($student){
-    $insertId = 0;
+    $insertedId = 0;
     if ($student->GetName() == '' || $student->GetEmail() == '') {
         $this->errorMessage = 'Student Name, Romm and Email is required.';
         return $insertedId;

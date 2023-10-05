@@ -9,8 +9,8 @@ if(isset($_POST['studentSubmitButton']) && $_POST['studentSubmitButton'] == 'Upd
     $studentName = $_POST['studentName'];
     $studentEmail = $_POST['studentEmail'];
     $studentDateOfBirth = $_POST['studentDateOfBirth'];
-$aStudent = new Student($studentId,$studentName,$studentEmail,$studentDateOfBirth);
-$studentResult = $studentBllObj->UpdateStudent($aStudent);
+    $aStudent = new Student($studentId, $studentName, $studentEmail, $studentDateOfBirth);
+    $updateResult = $studentBllObj->UpdateStudent($aStudent);
 if ($updateResult > 0) {
     $updateSuccess = true ;
 } else {
@@ -20,6 +20,20 @@ if ($updateResult > 0) {
         $errorMessage ='Record can\'t be updated. Operation failed.';
     }
 }
+
+} elseif(isset($_GET['id']) && (int)$_GET['id'] >0) {
+
+    $studentId = (int)$_GET['id'];
+    $action = '';
+    if (isset($_GET['action'])) {
+        $action = $_GET['action'];
+    }
+    $studentBllObj = new StudentBLO();
+    $aStudent = $studentBllObj->GetStudent($studentId);
+
+    if ($action == 'add') {
+        $addSuccess = true;
+    }
 
 } else {
     header("Location: index.php");
