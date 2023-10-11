@@ -3,7 +3,7 @@ class DatabaseConnection {
     private $host = "localhost";
     private $user ='root';
     private $dbname = 'stdinfo';
-    private $password ='';
+    private $password ='Hbouki.2002';
     public function connect(){
         try{
             $dsn ="mysql:host=" . $this->host . ";dbname=" . $this->dbname;
