@@ -2,15 +2,14 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : lun. 02 oct. 2023 à 17:17
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
+-- Host: 127.0.0.1
+-- Generated: Mon, 02 Oct 2023 at 17:17
+-- Server version: 10.4.28-MariaDB
+-- PHP version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,24 +17,53 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `arbre_competence`
+-- Database: `arbre_competence`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `personne`
+-- Structure of table `personne`
 --
 
 CREATE TABLE `personne` (
-  `Id` int(11) NOT NULL,
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Nom` varchar(50) NOT NULL,
   `CNE` varchar(11) NOT NULL,
-  `Ville_Id` int(11) NOT NULL
+  `Ville_Id` int(11) NOT NULL,
+  PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `ville` (
+  `Id` int(11) NOT NULL,
+  `Nom` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `ville` (`Id`, `Nom`) VALUES
+(1, 'Tetouan'),
+(2, 'Tanger'),
+(3, 'Casablanca'),
+(4, 'Rabat'),
+(5, 'Larache'),
+(6, 'Khouribga'),
+(7, 'El Kelaa des Sraghna'),
+(8, 'Khenifra'),
+(9, 'Beni Mellal'),
+(10, 'Tiznit'),
+(11, 'Errachidia'),
+(12, 'Taroudant'),
+(13, 'Ouarzazate'),
+(14, 'Safi'),
+(15, 'Lahraouyine'),
+(16, 'Berrechid'),
+(17, 'Fkih Ben Salah'),
+(18, 'Taourirt'),
+(19, 'Sefrou'),
+(20, 'Youssoufia');
+COMMIT;
+
 --
--- Déchargement des données de la table `personne`
+-- Data for table `personne`
 --
 
 INSERT INTO `personne` (`Id`, `Nom`, `CNE`, `Ville_Id`) VALUES
@@ -62,48 +90,17 @@ INSERT INTO `personne` (`Id`, `Nom`, `CNE`, `Ville_Id`) VALUES
 (23, 'doja cati', 'F333777', 12),
 (24, 'ice spice', 'P634774', 13),
 (25, 'olivia rodrigo', 'P634755', 5),
-(26, 'doja cat', 'P634755', 12),
-(0, 'Tempora corporis con', 'Eu aliquam ', 17),
-(0, 'hassan', 'F333777', 13),
-(0, 'HUSSEIN', 'F333777', 2);
-
--- --------------------------------------------------------
+(26, 'doja cat', 'P634755', 12);
 
 --
--- Structure de la table `ville`
+-- Structure of table `ville`
 --
 
-CREATE TABLE `ville` (
-  `Id` int(11) NOT NULL,
-  `Nom` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Déchargement des données de la table `ville`
+-- Data for table `ville`
 --
 
-INSERT INTO `ville` (`Id`, `Nom`) VALUES
-(1, 'Tetouan'),
-(2, 'Tanger'),
-(3, 'Casablanca'),
-(4, 'Rabat'),
-(5, 'Larache'),
-(6, 'Khouribga'),
-(7, 'El Kelaa des Sraghna'),
-(8, 'Khenifra'),
-(9, 'Beni Mellal'),
-(10, 'Tiznit'),
-(11, 'Errachidia'),
-(12, 'Taroudant'),
-(13, 'Ouarzazate'),
-(14, 'Safi'),
-(15, 'Lahraouyine'),
-(16, 'Berrechid'),
-(17, 'Fkih Ben Salah'),
-(18, 'Taourirt'),
-(19, 'Sefrou'),
-(20, 'Youssoufia');
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

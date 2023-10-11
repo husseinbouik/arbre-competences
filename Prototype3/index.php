@@ -43,31 +43,42 @@ $stagiaires = $gestionStagiaire->AfficherTous();
         <?php } ?>
       </tbody>
     </table>
-<?php 
-  $con = new mysqli('localhost', 'root', '', 'arbre_competence');
-  // $query = $con->query("
-  //   SELECT v.Nom as city,
-  //          COUNT(p.Id) as population
-  //   FROM ville v
-  //   LEFT JOIN personne p ON v.Id = p.Ville_Id
-  //   GROUP BY v.Nom
-  // ");
-  $query = $con->query("
-    SELECT v.Nom as city,
-           COUNT(p.Id) as population
-    FROM ville v
-    INNER JOIN personne p ON v.Id = p.Ville_Id
-    GROUP BY v.Nom
-");
+<?php
+try {
+  // Create a PDO connection
+  $pdo = new PDO("mysql:host=localhost;dbname=arbre_competence", 'root', 'Hbouki.2002');
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+  // Define the SQL query to fetch city population data
+  $query = "SELECT v.Nom as city, COUNT(p.Id) as population
+            FROM ville v
+            INNER JOIN personne p ON v.Id = p.Ville_Id
+            GROUP BY v.Nom";
 
-  $cities = [];
-  $population = [];
+  // Prepare and execute the SQL query
+  $stmt = $pdo->prepare($query);
+  $stmt->execute();
 
-  foreach ($query as $data) {
-    $cities[] = $data['city'];
-    $population[] = $data['population'];
+  // Fetch the result as an associative array
+  $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  // Display the results
+  foreach ($result as $row) {
+    echo "City: " . $row['city'] . ", Population: " . $row['population'] . "<br>";
   }
+
+} catch (PDOException $e) {
+  echo "Connection failed: " . $e->getMessage();
+}
+
+// If you need to store the data in separate arrays, you can do so like this:
+$cities = [];
+$population = [];
+
+foreach ($result as $data) {
+  $cities[] = $data['city'];
+  $population[] = $data['population'];
+}
 ?>
 
 <div style="width: 800px;">

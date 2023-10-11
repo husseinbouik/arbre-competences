@@ -1,5 +1,4 @@
 <?php
-
 class Stagiaire{
 
     private $Id;
@@ -7,12 +6,6 @@ class Stagiaire{
     private $CNE;
     private $Ville_Id;
     private $Ville_Nom;
-
-   
-
-
-
-
     public function getId() {
         return $this->Id;
     }

@@ -9,14 +9,14 @@ if (file_exists('./Entities/Stagiaire.php')) {
     echo "Error: Stagiaire.php not found in either directory.";
 }
 
-class GestionStagiaire
+class StagiaireDAO
 {
 
     private $pdo;
 
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=arbre_competence', 'root', '');
+        $this->pdo = new PDO('mysql:host=localhost;dbname=arbre_competence', 'root', 'Hbouki.2002');
     }
 
     public function AfficherTous()

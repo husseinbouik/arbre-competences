@@ -1,20 +1,13 @@
 <?php
-include "../Managers/GestionStagiaire.php";
+include "BLL/StagiaireBLO.php";
 
-if (file_exists('./Entities/Stagiaire.php')) {
-  include './Entities/Stagiaire.php';
-} elseif (file_exists('../Entities/Stagiaire.php')) {
-  
-} else {
-  // Neither file exists, so handle the error here
-  echo "Error: Stagiaire.php not found in either directory.";
-}
+
 
 // Get the ID of the stagiaire to edit
 $Id = $_GET['Id'];
 
 // Create a new GestionStagiaire object
-$gestionStagiaire = new GestionStagiaire();
+$gestionStagiaire = new StagiaireDAO();
 
 // Get the stagiaire's data from the database
 $stagiairee = $gestionStagiaire->GetStagiaireById($Id);
@@ -26,7 +19,7 @@ if (!empty($_POST)) {
   $Nom = $_POST['Nom'];
   $CNE = $_POST['CNE'];
 
-  $gestionStagiaire = new GestionStagiaire();
+  $gestionStagiaire = new StagiaireDAO();
   // Update the stagiaire in the database
   $gestionStagiaire->ModifierStagiaire($Id, $Nom, $CNE);
   // Redirect the user to the index page

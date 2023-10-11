@@ -1,19 +1,14 @@
 <?php
-include "../Managers/GestionStagiaire.php";
-if (file_exists('./Entities/Stagiaire.php')) {
-  include './Entities/Stagiaire.php';
-} elseif (file_exists('../Entities/Stagiaire.php')) {
-  
-} else {
-  // Neither file exists, so handle the error here
-  echo "Error: Stagiaire.php not found in either directory.";
-}
+// require_once('loader.php');
+
+include "BLL/StagiaireBLO.php";
+
 
 // Trouver tous les employés depuis la base de données 
-$gestionStagiaire = new GestionStagiaire();
+$gestionStagiaire = new StagiaireDAO();
 
 if (!empty($_POST)) {
-    $stagiaire = new   Stagiaire();
+    $stagiaire = new Stagiaire();
     $stagiaire->SetNom($_POST['Nom']);
     $stagiaire->setCne($_POST['CNE']);
     $stagiaire->setVilleId($_POST['Ville_Id']);
