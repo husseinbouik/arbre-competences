@@ -67,12 +67,12 @@ return $dataArr;
                  DateOfBirth='" . $student->GetDateOfBirth() . "'
              WHERE Id=" . $student->GetId();
 
-     $stm = $this->db->prepare($sql);
-     $stm->execute();
-     return $stm->rowCount();
+     $stmt = $this->db->prepare($sql);
+     $stmt->execute();
+     return $stmt->rowCount();
  }
  public function DeleteStudent($studentId){
-    $sql = "DELETE FROM Sdutent WHERE Id=" . $studentId;
+    $sql = "DELETE FROM Student WHERE Id=" . $studentId;
     $stmt = $this->db->prepare($sql);
     $stmt->execute();
     return $stmt->rowCount();
