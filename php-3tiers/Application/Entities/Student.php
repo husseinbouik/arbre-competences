@@ -5,7 +5,7 @@ class Student {
     private $email;
     private $dateOfBirth;
 
-    function __contruct($id, $name,$email,$dateOfBirth){
+    function __construct($id, $name,$email,$dateOfBirth){
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;

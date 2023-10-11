@@ -49,7 +49,7 @@ return $dataArr;
     $name = $student->GetName();
     $email = $student->GetEmail();
     $dateOfBirth = $student->GetDateOfBirth();
-
+    $dateOfBirth = date('Y-m-d H:i:s', strtotime($dateOfBirth));
     $stmt->bindParam(':name',$name);
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':dateOfBirth',$dateOfBirth);
