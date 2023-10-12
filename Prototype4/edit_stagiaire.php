@@ -23,7 +23,7 @@ if (!empty($_POST)) {
   // Update the stagiaire in the database
   $gestionStagiaire->ModifierStagiaire($Id, $Nom, $CNE);
   // Redirect the user to the index page
-  header("Location: ../index.php");
+  header("Location: index.php");
 }
 
 ?>

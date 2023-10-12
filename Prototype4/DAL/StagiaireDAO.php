@@ -16,7 +16,7 @@ class StagiaireDAO
 
     public function __construct()
     {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=arbre_competence', 'root', 'Hbouki.2002');
+        $this->pdo = new PDO('mysql:host=localhost;dbname=arbre_competence', 'root', '');
     }
 
     public function AfficherTous()

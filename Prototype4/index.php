@@ -45,7 +45,7 @@ $stagiaires = $gestionStagiaire->AfficherTous();
 <?php
 try {
   // Create a PDO connection
-  $pdo = new PDO("mysql:host=localhost;dbname=arbre_competence", 'root', 'Hbouki.2002');
+  $pdo = new PDO("mysql:host=localhost;dbname=arbre_competence", 'root', '');
   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   // Define the SQL query to fetch city population data
