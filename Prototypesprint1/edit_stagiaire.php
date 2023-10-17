@@ -4,7 +4,7 @@ include "BLL/StagiaireBLO.php";
 
 
 // Get the ID of the stagiaire to edit
-$Id = $_GET['Id'];
+$Id = $_GET['competenceid'];
 
 // Create a new GestionStagiaire object
 $gestionStagiaire = new StagiaireDAO();

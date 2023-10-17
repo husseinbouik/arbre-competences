@@ -1,3 +1,37 @@
+<?php
+require_once('../layout/loader.php');
+
+
+if (isset($_GET['competenceId'])) {
+// Get the ID of the stagiaire to edit
+$competenceId = $_GET['competenceId'];
+// Create a new GestionCompetence object
+$gestionCompetence = new CompetenceDAO();
+
+// Get the stagiaire's data from the database
+$Competence = $gestionCompetence->GetCompetenceById($competenceId);
+
+}
+
+
+// If the POST form is submitted, update the stagiaire in the database
+if (!empty($_POST['Id'])) {
+  // Get the values of the ID, name, and CNE fields
+  $Id = $_POST['Id'];
+  $Nom = $_POST['Nom'];
+  $Code = $_POST['Code'];
+  $Reference = $_POST['Reference'];
+  $Description = $_POST['Description'];
+
+
+  $gestionCompetence = new CompetenceDAO();
+  // Update the stagiaire in the database
+  $gestionCompetence->UpdateCompetence($Competence);
+  // Redirect the user to the index page
+  header("Location: index.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,6 +61,7 @@
     <link rel="stylesheet" href="../assets/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="../assets/plugins/summernote/summernote-bs4.min.css">
+    <script src="https://cdn.tiny.cloud/1/d2nq8cur7uv9c3ovyevwee5l5e5k2ym6hodsnpuuy1hyy1yf/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -41,7 +76,7 @@
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="../../index3.html" class="nav-link">Home</a>
+      <a href="index.php" class="nav-link">Home</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
       <a href="#" class="nav-link">Contact</a>
@@ -107,153 +142,58 @@
 
     <!-- Content Wrapper -->
     <div class="content-wrapper">
-      <a class="btn btn-app bg-secondary mt-5" href="add-edit.html" speechify-initial-font-size="12px">
-        <i class="fas fa-plus" speechify-initial-font-size="20px"></i> ajouter
-    </a>
-    
-          <!-- /.col -->
-
-            <div class="card">
-              <div class="card-header">
-<h2>Gestion des compétences</h2>
-
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body p-0">
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th >Reference</th>
-                      <th>Code</th>
-                      <th>Nom</th>
-                      <th>Description</th>
-                      <th >Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>C1</td>
-                      <td>Maquette</td>
-                      <td>Maquetter une application mobile</td>
-                      <td>description</td>
-                      <td><div class="btn-group">
-    <a href="add-edit.html" class="btn btn-warning mx-2">
-        <i class="fas fa-edit"></i> 
-    </a>
-    <a href="" class="btn btn-danger mx-2">
-        <i class="fas fa-trash"></i> 
-    </a>
-</div>
-</td>
-
-                    </tr>
-                    <tr>
-                      <td>C2</td>
-                      <td>Base Données</td>
-                      <td>Manipuler une base de données - perfectionnement</td>
-                      <td>description</td>
-                      <td><div class="btn-group">
-    <a href="add-edit.html" class="btn btn-warning mx-2">
-        <i class="fas fa-edit"></i> 
-    </a>
-    <a href="" class="btn btn-danger mx-2">
-        <i class="fas fa-trash"></i> 
-    </a>
-</div>
-</td>
-                    </tr>
-                    <tr>
-                      <td>C3</td>
-                      <td>back-end</td>
-                      <td>Développer la partie back-end d'une application web ou web mobile - perfectionnement</td>
-                      <td>description</td>
-                      <td><div class="btn-group">
-    <a href="add-edit.html" class="btn btn-warning mx-2">
-        <i class="fas fa-edit"></i> 
-    </a>
-    <a href="" class="btn btn-danger mx-2">
-        <i class="fas fa-trash"></i> 
-    </a>
-</div>
-</td>
-                    </tr>
-                    <tr>
-                      <td>C4</td>
-                      <td>gestion</td>
-                      <td>Collaborer à la gestion d’un projet informatique et à l’organisation de l’environnement de développement - perfectionnement</td>
-                      <td>description</td>
-                      <td><div class="btn-group">
-    <a href="add-edit.html" class="btn btn-warning mx-2">
-        <i class="fas fa-edit"></i> 
-    </a>
-    <a href="" class="btn btn-danger mx-2">
-        <i class="fas fa-trash"></i> 
-    </a>
-</div>
-</td>
-                    </tr>
-                    <tr>
-                      <td>C5</td>
-                      <td>mobile native</td>
-                      <td>Développer une application mobile native, avec Android et React Native</td>
-                      <td>description</td>
-                      <td><div class="btn-group">
-    <a href="add-edit.html" class="btn btn-warning mx-2">
-        <i class="fas fa-edit"></i> 
-    </a>
-    <a href="" class="btn btn-danger mx-2">
-        <i class="fas fa-trash"></i> 
-    </a>
-</div>
-</td>
-                    </tr>
-                    <tr>
-                      <td>C6</td>
-                      <td>tests</td>
-                      <td>Préparer et exécuter les plans de tests d’une application</td>
-                      <td>description</td>
-                      <td><div class="btn-group">
-    <a href="add-edit.html" class="btn btn-warning mx-2">
-        <i class="fas fa-edit"></i> 
-    </a>
-    <a href="" class="btn btn-danger mx-2">
-        <i class="fas fa-trash"></i> 
-    </a>
-</div>
-</td>
-                    </tr>
-                    <tr>
-                      <td>C7</td>
-                      <td>déploiement</td>
-                      <td>Préparer et exécuter le déploiement d’une application web et mobile - perfectionnement</td>
-                      <td>description</td>
-                      <td><div class="btn-group">
-    <a href="add-edit.html" class="btn btn-warning mx-2">
-        <i class="fas fa-edit"></i> 
-    </a>
-    <a href="" class="btn btn-danger mx-2">
-        <i class="fas fa-trash"></i> 
-    </a>
-</div>
-</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <!-- /.card-body -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"> ajouter/modifier competence</h3>
             </div>
-            <!-- /.card -->
+            <div class="card-body">
+                <form>
+                    <!-- Reference -->
+                    <div class="form-group">
+                    <input type="hIdden" name="Id" Id="Id" value="<?php echo $Competence->getId(); ?>">
+                        <label for="reference">Reference<span class="text-red">*</span></label>
+                        <input type="text" class="form-control" id="reference" name="Reference" placeholder="Enter reference" value="<?php echo $Competence->getReference(); ?>">
+                    </div>
+        
+                    <!-- Code -->
+                    <div class="form-group">
+                        <label for="code">Code</label>
+                        <input type="text" class="form-control" id="code" name="Code" placeholder="Enter code" value="<?php echo $Competence->getCode(); ?>">
+                    </div>
+        
+                    <!-- Nom -->
+                    <div class="form-group">
+                        <label for="nom">Nom<span class="text-red">*</span></label>
+                        <input type="text" class="form-control" id="nom" name="Nom" placeholder="Enter nom" value="<?php echo $Competence->getNom();?>">
+                    </div>
+        
+                    <!-- Description -->
+<div class="form-group">
+    <label for="description">Description</label>
+    <textarea id="description" name="Description" value=""><?php echo $Competence->getDescription(); ?></textarea>
+</div>
 
-
-            <!-- /.card -->
-          </div>    
-
+        
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+        
     <!-- Footer (Optional) -->
     <footer class="main-footer">
         <!-- Add your footer content here -->
     </footer>
 </div>
+<script>
+    tinymce.init({
+        selector: 'textarea#description',
+        plugins: 'link image code',
+        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | link image | code',
+        menubar: false,
+    });
+</script>
+
 <!-- ./wrapper -->
 
 <!-- jQuery -->
