@@ -147,30 +147,30 @@ if (!empty($_POST['Id'])) {
                 <h3 class="card-title"> ajouter/modifier competence</h3>
             </div>
             <div class="card-body">
-                <form>
+                <form id="edit-form" action="" method="post">
                     <!-- Reference -->
                     <div class="form-group">
-                    <input type="hIdden" name="Id" Id="Id" value="<?php echo $Competence->getId(); ?>">
+                    <input type="hIdden" name="Id" Id="Id" value="<?php if (isset($_GET['competenceId'])) { echo $Competence->getId();} ?>">
                         <label for="reference">Reference<span class="text-red">*</span></label>
-                        <input type="text" class="form-control" id="reference" name="Reference" placeholder="Enter reference" value="<?php echo $Competence->getReference(); ?>">
+                        <input type="text" class="form-control" id="reference" name="Reference" placeholder="Enter reference" value="<?php if (isset($_GET['competenceId'])) {echo $Competence->getReference(); } ?>">
                     </div>
         
                     <!-- Code -->
                     <div class="form-group">
                         <label for="code">Code</label>
-                        <input type="text" class="form-control" id="code" name="Code" placeholder="Enter code" value="<?php echo $Competence->getCode(); ?>">
+                        <input type="text" class="form-control" id="code" name="Code" placeholder="Enter code" value="<?php if (isset($_GET['competenceId'])) {echo $Competence->getCode(); } ?>">
                     </div>
         
                     <!-- Nom -->
                     <div class="form-group">
                         <label for="nom">Nom<span class="text-red">*</span></label>
-                        <input type="text" class="form-control" id="nom" name="Nom" placeholder="Enter nom" value="<?php echo $Competence->getNom();?>">
+                        <input type="text" class="form-control" id="nom" name="Nom" placeholder="Enter nom" value="<?php if (isset($_GET['competenceId'])) {echo $Competence->getNom();}?>">
                     </div>
         
                     <!-- Description -->
 <div class="form-group">
     <label for="description">Description</label>
-    <textarea id="description" name="Description" value=""><?php echo $Competence->getDescription(); ?></textarea>
+    <textarea id="description" name="Description" value=""><?php if (isset($_GET['competenceId'])) {echo $Competence->getDescription();} ?></textarea>
 </div>
 
         
