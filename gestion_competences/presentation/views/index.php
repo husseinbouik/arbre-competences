@@ -1,6 +1,23 @@
 <?php 
 require_once('../layout/loader.php');
+$deleteSuccess = false;
+$errorMessage ='';
+if(isset($_REQUEST['delete']) && $_REQUEST['delete'] == 'yes'){
+$studentId = (int) $_REQUEST['id'];
+$deleteResult = $competenceBLO->DeleteCompetence($studentId);
+if($deleteResult > 0){
+    $deleteSuccess = true;
 
+}else {
+    if ($competenceBLO->errorMessage !='') {
+        $errorMessage = $competenceBLO->errorMessage;
+
+    } else {
+    $errorMessage= 'Record can\'t be deleted. Operation failed.'; 
+    }
+    
+}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -153,10 +170,10 @@ foreach ($competences as $competence) :
   <td><?php echo $competence->getDescription(); ?></td>
   <td>
     <div class="btn-group">
-      <a href="add-edit.php?competenceId=<?php echo $competence->getId(); ?>" class="btn btn-warning mx-2">
+      <a href="add-edit.php?competenceID=<?php echo $competence->getId(); ?>" class="btn btn-warning mx-2">
         <i class="fas fa-edit"></i>
       </a>
-      <a href="add-edit.php?competenceId=<?php echo $competence->getId(); ?>" class="btn btn-danger mx-2">
+      <a onclick="return confirm('Do you really want to delete this record?')" href="add-edit.php?id=<?php echo $competence->getId(); ?>&delete=yes" class="btn btn-danger mx-2">
         <i class="fas fa-trash"></i>
       </a>
     </div>

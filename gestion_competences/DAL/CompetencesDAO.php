@@ -29,33 +29,26 @@ class CompetenceDAO {
   
   
 
-  public function GetCompetenceById($competenceId) {
-    if ($competenceId <= 0) {
-      return false;
-    }
+  public function GetCompetence($competenceID)
+  {
+      $sql = "SELECT * FROM competences WHERE Id = ?";
+      $stmt = $this->pdo->prepare($sql);
+      $stmt->execute([$competenceID]);
+      $competence_data = $stmt->fetch(PDO::FETCH_ASSOC);
   
-    $sql = "SELECT * FROM competences WHERE Id = :competenceId";
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->bindParam(':competenceId', $competenceId, PDO::PARAM_INT);
-    $stmt->execute();
+      if ($competence_data) {
+          $competence = new Competence();
+          $competence->setId($competence_data['Id']);
+          $competence->setReference($competence_data['Reference']);
+          $competence->setCode($competence_data['Code']);
+          $competence->setNom($competence_data['Nom']);
+          $competence->setDescription($competence_data['Description']); // Set the DESCRIPTION field
+          return $competence;
+      }
   
-    $aCompetence = $stmt->fetch(PDO::FETCH_ASSOC);
-  
-    if ($aCompetence !== false) {
-      $competenceObj = new Competence();
-      $competenceObj->setId($aCompetence['Id']);
-      $competenceObj->setReference($aCompetence['Reference']);
-      $competenceObj->setCode($aCompetence['Code']);
-      $competenceObj->setNom($aCompetence['Nom']);
-      $competenceObj->setDescription($aCompetence['Description']);
-  
-      return $competenceObj;
-    }
-  
-    return false;
+      return null;
   }
   
-
   public function AddCompetence($competence) {
     $sql = "INSERT INTO competences (`Reference`, `Code`, `Nom`, `Description`) VALUES (:reference, :code, :nom, :description)";
     $stmt = $this->pdo->prepare($sql);
@@ -75,35 +68,41 @@ class CompetenceDAO {
     $lastInsertId = $this->pdo->lastInsertId();
 
     return $lastInsertId;
-  }
+}
 
-  public function UpdateCompetence($competence) {
-    $sql = "UPDATE competences
-        SET
-          Reference = :reference,
-          Code = :code,
-          Nom = :nom,
-          Description = :description
-        WHERE Id = :id";
+  // public function AddCompetence($competence) {
+  //   $sql = "INSERT INTO competences (`Reference`, `Code`, `Nom`, `Description`) VALUES (:reference, :code, :nom, :description)";
+  //   $stmt = $this->pdo->prepare($sql);
 
-    $stmt = $this->pdo->prepare($sql);
+  //   $reference = $competence->getReference();
+  //   $code = $competence->getCode();
+  //   $nom = $competence->getNom();
+  //   $description = $competence->getDescription();
 
-    $id = $competence->getId();
-    $reference = $competence->getReference();
-    $code = $competence->getCode();
-    $nom = $competence->getNom();
-    $description = $competence->getDescription();
+  //   $stmt->bindParam(':Reference', $reference);
+  //   $stmt->bindParam(':Code', $code);
+  //   $stmt->bindParam(':Nom', $nom);
+  //   $stmt->bindParam(':Description', $description);
 
-    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    $stmt->bindParam(':reference', $reference);
-    $stmt->bindParam(':code', $code);
-    $stmt->bindParam(':nom', $nom);
-    $stmt->bindParam(':description', $description);
+  //   $stmt->execute();
 
-    $stmt->execute();
+  //   $lastInsertId = $this->pdo->lastInsertId();
 
-    return $stmt->rowCount();
-  }
+  //   return $lastInsertId;
+  // }
+
+  public function UpdateCompetence(Competence $competence)
+    {
+        $sql = "UPDATE competences SET Reference = ?, Code = ?, Nom = ?, Description = ? WHERE Id = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([
+            $competence->getReference(),
+            $competence->getCode(),
+            $competence->getNom(),
+            $competence->getDescription(), // Update the DESCRIPTION field
+            $competence->getId()
+        ]);
+    }
 
   public function DeleteCompetence($competenceId) {
     $sql = "DELETE FROM competences WHERE Id = :competenceId";

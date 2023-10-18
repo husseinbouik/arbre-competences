@@ -11,39 +11,60 @@ class CompetenceBLO {
     return $this->competenceDao->GetAllCompetences();
   }
 
-  public function GetCompetence($competenceId) {
-    return $this->competenceDao->GetCompetence($competenceId);
-  }
+  public function GetCompetence($competenceID) {
+        return $this->competenceDao->GetCompetence($competenceID);
+    }
 
-  public function AddCompetence($competence) {
-    $insertedId = 0;
 
-    if ($competence->getReference() == '' || $competence->getCode() == '' || $competence->getNom() == '') {
-      $this->errorMessage = 'Competence Reference, Code and Nom is required.';
+    public function AddCompetence($competence) {
+      $insertedId = 0;
+  
+      $reference = $competence->getReference();
+      $nom = $competence->getNom();
+  
+      // Check if Reference is empty
+      if (empty($reference) && !empty($nom)) {
+          $this->errorMessage = 'Competence Reference is required.';
+      }
+      // Check if Nom is empty
+      elseif (!empty($reference) && empty($nom)) {
+          $this->errorMessage = 'Competence Nom is required.';
+      }
+      // Check if both Reference and Nom are empty
+      elseif (empty($reference) && empty($nom)) {
+          $this->errorMessage = 'Competence Reference, Code, and Nom are required.';
+      } else {
+          $insertedId = (int)$this->competenceDao->AddCompetence($competence);
+          header('Location: index.php');
+      }
+  
       return $insertedId;
-    }
-
-    if ($this->IsValidCompetence($competence)) {
-      $insertedId = (int)$this->competenceDao->AddCompetence($competence);
-    }
-
-    return $insertedId;
   }
+  
 
-  public function UpdateCompetence($competence) {
-    $affectedRows = 0;
+  public function UpdateCompetence(Competence $competence) {
+      
+    $reference = $competence->getReference();
+    $nom = $competence->getNom();
 
-    if ($competence->getReference() == '' || $competence->getCode() == '' || $competence->getNom() == '') {
-      $this->errorMessage = 'Competence Reference, Code and Nom is required.';
-      return $affectedRows;
+    // Check if Reference is empty
+    if (empty($reference) && !empty($nom)) {
+        $this->errorMessage = 'Competence Reference is required.';
     }
-
-    if ($this->IsValidCompetence($competence)) {
-      $affectedRows = (int)$this->competenceDao->UpdateCompetence($competence);
+    // Check if Nom is empty
+    elseif (!empty($reference) && empty($nom)) {
+        $this->errorMessage = 'Competence Nom is required.';
+    }
+    // Check if both Reference and Nom are empty
+    elseif (empty($reference) && empty($nom)) {
+        $this->errorMessage = 'Competence Reference, Code, and Nom are required.';
+    } else {
+        $affectedRows = (int) $this->competenceDao->UpdateCompetence($competence);
+        header('Location: index.php');
     }
 
     return $affectedRows;
-  }
+}
 
   public function DeleteCompetence($competenceId) {
     $affectedRows = 0;
@@ -61,21 +82,12 @@ class CompetenceBLO {
     return $affectedRows;
   }
 
-  public function IsValidCompetence($competence) {
-    if ($this->IsReferenceExists($competence->getReference(), $competence->getId())) {
-      $this->errorMessage = 'Competence Reference ' . $competence->getReference() . ' already exists. Try a different one.';
-      return false;
-    } else {
-      return true;
-    }
-  }
+
 
   public function IsIdExists($id) {
     return $this->competenceDao->IsIdExists($id);
   }
 
-  public function IsReferenceExists($reference, $id) {
-    return $this->competenceDao->IsReferenceExists($reference, $id);
-  }
+
 }
 ?>
