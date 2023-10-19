@@ -24,19 +24,20 @@ class CompetenceBLO {
   
       // Check if Reference is empty
       if (empty($reference) && !empty($nom)) {
-          $this->errorMessage = 'Competence Reference is required.';
-      }
-      // Check if Nom is empty
-      elseif (!empty($reference) && empty($nom)) {
-          $this->errorMessage = 'Competence Nom is required.';
-      }
-      // Check if both Reference and Nom are empty
-      elseif (empty($reference) && empty($nom)) {
-          $this->errorMessage = 'Competence Reference, Code, and Nom are required.';
-      } else {
-          $insertedId = (int)$this->competenceDao->AddCompetence($competence);
-          header('Location: index.php');
-      }
+        $this->errorMessage = 'La référence de la compétence est obligatoire.';
+    }
+    // Check if Nom is empty
+    elseif (!empty($reference) && empty($nom)) {
+        $this->errorMessage = 'Le nom de la compétence est obligatoire.';
+    }
+    // Check if both Reference and Nom are empty
+    elseif (empty($reference) && empty($nom)) {
+        $this->errorMessage = 'La référence  et le nom de la compétence sont obligatoires.';
+    } else {
+        $insertedId = (int)$this->competenceDao->AddCompetence($competence);
+        header('Location: index.php');
+    }
+    
   
       return $insertedId;
   }
@@ -49,16 +50,16 @@ class CompetenceBLO {
 
     // Check if Reference is empty
     if (empty($reference) && !empty($nom)) {
-        $this->errorMessage = 'Competence Reference is required.';
-    }
-    // Check if Nom is empty
-    elseif (!empty($reference) && empty($nom)) {
-        $this->errorMessage = 'Competence Nom is required.';
-    }
-    // Check if both Reference and Nom are empty
-    elseif (empty($reference) && empty($nom)) {
-        $this->errorMessage = 'Competence Reference, Code, and Nom are required.';
-    } else {
+      $this->errorMessage = 'La référence de la compétence est obligatoire.';
+  }
+  // Check if Nom is empty
+  elseif (!empty($reference) && empty($nom)) {
+      $this->errorMessage = 'Le nom de la compétence est obligatoire.';
+  }
+  // Check if both Reference and Nom are empty
+  elseif (empty($reference) && empty($nom)) {
+      $this->errorMessage = 'La référence  et le nom de la compétence sont obligatoires.';
+  } else {
         $affectedRows = (int) $this->competenceDao->UpdateCompetence($competence);
         header('Location: index.php');
         return $affectedRows;

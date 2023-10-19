@@ -66,7 +66,7 @@ if($deleteResult > 0){
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="../../index.php" class="nav-link">Home</a>
+          <a href="index.php" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="#" class="nav-link">Contact</a>
@@ -106,7 +106,7 @@ if($deleteResult > 0){
             <li class="nav-item">
               <a href="#" class="nav-link active">
                 <i class="nav-icon fas fa-users"></i> <!-- Change the class to "fas fa-users" -->
-                <p>Gestion des compétences</p>
+                <p>Gestion compétences</p>
               </a>
             </li>
             <li class="nav-item">
@@ -143,7 +143,7 @@ if($deleteResult > 0){
 
       <div class="card mx-2">
         <div class="card-header">
-          <h2>Gestion des compétences</h2>
+          <h2>Gestion Compétences</h2>
 
         </div>
         <!-- /.card-header -->

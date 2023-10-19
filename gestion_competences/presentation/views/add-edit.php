@@ -161,11 +161,15 @@ require_once('../layout/loader.php');
     <div class="content-wrapper">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title"> ajouter/modifier competence</h3>
+          <h3 class="card-title"><?php if (isset($_GET['competenceID'])) {
+                  echo 'Modifier' ;
+                }else {
+                  echo 'Ajouter' ;
+                                  } ?> Competence</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body  " >
         <?php if(!empty($errorMessage)):?>
-    <div class="alert alert-danger"><?php echo $errorMessage;?></div>
+    <div class="alert alert-danger text-center"><?php echo $errorMessage;?></div>
 <?php endif;?>
           <form id="edit-form" action="add-edit.php?competenceID=<?php if (isset($_GET['competenceID'])) {
                   echo $competence->getId();
@@ -212,7 +216,11 @@ require_once('../layout/loader.php');
 
 
             <!-- Submit button -->
-            <input type="submit" name="competenceSubmitButton" id="competenceSubmitButton" value="Add/edit Competence"
+            <input type="submit" name="competenceSubmitButton" id="competenceSubmitButton" value="<?php if (isset($_GET['competenceID'])) {
+                  echo 'Modifier' ;
+                }else {
+                  echo 'Ajouter' ;
+                                  } ?>  Competence"
               class="btn btn-primary" />
           </form>
         </div>
