@@ -30,6 +30,7 @@ require_once('../layout/loader.php');
       
     } else {
               // Otherwise, we are adding a new Competence
+              $competence = new Competence(); // Instantiate the Competence object
       $competence->setReference($reference);
       $competence->setCode($code);
       $competence->setNom($nom);
@@ -166,7 +167,9 @@ require_once('../layout/loader.php');
         <?php if(!empty($errorMessage)):?>
     <div class="alert alert-danger"><?php echo $errorMessage;?></div>
 <?php endif;?>
-          <form id="edit-form" action="add-edit.php" method="POST">
+          <form id="edit-form" action="add-edit.php?competenceID=<?php if (isset($_GET['competenceID'])) {
+                  echo $competence->getId();
+                } ?>" method="POST">
             <!-- Reference -->
             <div class="form-group">
               <input type="hIdden" name="Id" Id="Id"

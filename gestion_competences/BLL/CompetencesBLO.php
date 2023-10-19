@@ -61,9 +61,10 @@ class CompetenceBLO {
     } else {
         $affectedRows = (int) $this->competenceDao->UpdateCompetence($competence);
         header('Location: index.php');
+        return $affectedRows;
     }
 
-    return $affectedRows;
+
 }
 
   public function DeleteCompetence($competenceId) {

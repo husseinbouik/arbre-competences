@@ -4,6 +4,7 @@ $deleteSuccess = false;
 $errorMessage ='';
 if(isset($_REQUEST['delete']) && $_REQUEST['delete'] == 'yes'){
 $studentId = (int) $_REQUEST['id'];
+$competenceBLO = new CompetenceBLO;
 $deleteResult = $competenceBLO->DeleteCompetence($studentId);
 if($deleteResult > 0){
     $deleteSuccess = true;
@@ -173,7 +174,7 @@ foreach ($competences as $competence) :
       <a href="add-edit.php?competenceID=<?php echo $competence->getId(); ?>" class="btn btn-warning mx-2">
         <i class="fas fa-edit"></i>
       </a>
-      <a onclick="return confirm('Do you really want to delete this record?')" href="add-edit.php?id=<?php echo $competence->getId(); ?>&delete=yes" class="btn btn-danger mx-2">
+      <a onclick="return confirm('Do you really want to delete this record?')" href="index.php?id=<?php echo $competence->getId(); ?>&delete=yes" class="btn btn-danger mx-2">
         <i class="fas fa-trash"></i>
       </a>
     </div>
