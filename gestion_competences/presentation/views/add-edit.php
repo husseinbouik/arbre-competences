@@ -23,9 +23,13 @@ require_once('../layout/loader.php');
               $competence->setCode($code);
               $competence->setNom($nom);
               $competence->setDescription($description);
-  
-              $competenceBLO->UpdateCompetence($competence);
-              $errorMessage = $competenceBLO->errorMessage;
+               try {
+                 $competenceBLO->UpdateCompetence($competence);
+                 header('location:index.php');
+                //  $errorMessage = $competenceBLO->errorMessage;
+                } catch (Exception $e) {
+                  $errorMessage = $e->getMessage();
+               }
           } 
       
     } else {
@@ -35,8 +39,13 @@ require_once('../layout/loader.php');
       $competence->setCode($code);
       $competence->setNom($nom);
       $competence->setDescription($description);
-        $competenceBLO->AddCompetence($competence);
-        $errorMessage = $competenceBLO->errorMessage;
+        try {
+          $competenceBLO->AddCompetence($competence);
+          header('location:index.php');
+         //  $errorMessage = $competenceBLO->errorMessage;
+         } catch (Exception $e) {
+           $errorMessage = $e->getMessage();
+        }
 
     }
       
